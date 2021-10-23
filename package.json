@@ -2,9 +2,9 @@
   "name": "BackServer",
   "version": "1.0.0",
   "description": "",
-  "main": "script-express.js",
+  "main": "server.js",
   "scripts": {
-    "test": "nodemon script-express.js"
+    "test": "node server.js"
   },
   "keywords": [],
   "author": "",
