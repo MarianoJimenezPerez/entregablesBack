@@ -2,9 +2,13 @@ const express = require ('express')
 const { Router } = express
 const app = express()
 const router = Router()
+function log (req, res, next) {
+    console.log(`Ruta recibida: ${req.protocol}://${req.get('host')}${req.originalUrl}`)
+}
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
+app.use(log)
 const productos = [
     {
         title: "Escuadra",
