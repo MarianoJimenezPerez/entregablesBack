@@ -44,11 +44,39 @@ router.get('/productos/:id', (req, res) => {
 })
 
 router.post('/productos', (req, res) => {
-    const { productoNuevo } = req.body
-    productoNuevo.id = productos.length + 1
-    productos.push( { productoNuevo } )
+    const productoNuevo = req.body
+    productos.push( productoNuevo )
+    productos[productos.length - 1].id = productos.length
     res.json({productos})
 })
+
+
+router.put('/productos/:id', (req, res) => {
+    const id = parseInt(req.params.id)
+    let productoModificado = productos.find(producto => producto.id === id)
+    if (isNaN(id)) {
+        return res.json( { error: 'Ingrese un ID válido' } )
+    }
+    if ( id < 1 || id > productos.length) {
+        return res.json( { error: 'producto no encontrado'} )
+    }
+    productoModificado = req.body
+    res.json({ productoModificado})
+})
+
+router.delete('/productos/:id', (req, res) => {
+    const id = parseInt(req.params.id)
+    const productoAEliminar = productos.findIndex(producto => producto.id === id)
+    productos.splice(productoAEliminar, 1)
+    if (isNaN(id)) {
+        return res.json( { error: 'Ingrese un ID válido' } )
+    }
+    if ( id < 1 || id > productos.length) {
+        return res.json( { error: 'producto no encontrado'} )
+    }
+    res.json(productos)
+})
+
 
 app.use('/api', router)
 const PORT = 8080
