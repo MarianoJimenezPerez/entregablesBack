@@ -1,14 +1,15 @@
 const express = require ('express')
+const {promises: fs} = require('fs')
 const { Router } = express
 const app = express()
 const router = Router()
-function log (req, res, next) {
-    console.log(`Ruta recibida: ${req.protocol}://${req.get('host')}${req.originalUrl}`)
-}
+
+const handlebars = require('express-handlebars');   
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
-app.use(log)
+
 const productos = [
     {
         title: "Escuadra",
@@ -31,7 +32,7 @@ const productos = [
 ]
 
 router.get('/productos', (req, res) => {
-    res.json(productos)
+    res.render('table', {listaProductos: productos})
 })
 
 router.get('/productos/:id', (req, res) => {
@@ -47,11 +48,21 @@ router.get('/productos/:id', (req, res) => {
     res.json({ producto: productos[id - 1]})
 })
 
-router.post('/productos', (req, res) => {
-    const productoNuevo = req.body
-    productos.push( productoNuevo )
-    productos[productos.length - 1].id = productos.length
-    res.json({productos})
+router.get('/productos2', (req, res) => {
+    res.render('main', {})
+    /*const tituloNuevo = document.getElementById('productTitle').value
+    const precioNuevo = document.getElementById('productPrice').value
+    const thumbnailNuevo = document.getElementById('productThumbnail').value
+    const sendForm = document.getElementById('send-form')
+    sendForm.addEventListener('click', () => {
+        const productoNuevo = {
+            title: tituloNuevo,
+            price: precioNuevo,
+            thumbnail: thumbnailNuevo
+        }
+        productos.push( productoNuevo )
+        productos[productos.length - 1].id = productos.length
+    })*/
 })
 
 
@@ -81,10 +92,23 @@ router.delete('/productos/:id', (req, res) => {
     res.json(productos)
 })
 
-
 app.use('/api', router)
 const PORT = 8080
 const server = app.listen(PORT, () => {
     console.log('servidor ok')
 })
+
 server.on('error', error => console.log(`error en el servidor ${error}`))
+
+
+app.engine(
+    'txt',
+    handlebars({
+        extname: '.txt',
+        defaultLayout: 'index.txt',
+        layoutsDir: __dirname + "/views/layouts",
+        partialsDir: __dirname + "/views/partials/"
+    })
+);
+app.set('view engine', 'txt')
+app.set('views', './views')
