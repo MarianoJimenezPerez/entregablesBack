@@ -1,20 +1,21 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Title</th>
-      <th scope="col">Price</th>
-      <th scope="col">Thumbnail</th>
+      <th scope="col" class="text-center">#</th>
+      <th scope="col" class="text-center">Title</th>
+      <th scope="col" class="text-center">Price</th>
+      <th scope="col" class="text-center">Thumbnail</th>
     </tr>
   </thead>
   <tbody>
     {{#each listaProductos}}
         <tr>
-            <th scope="row">#</th>
-            <td>{{this.title}}</td>
-            <td>{{this.price}}</td>
-            <td><img src="{{this.thumbnail}}"></img></td>
+            <th scope="row" class="text-center">{{this.id}}</th>
+            <td class="text-center">{{this.title}}</td>
+            <td class="text-center">{{this.price}}</td>
+            <td class="text-center"><img src="{{this.thumbnail}}"></img></td>
         </tr>
     {{/each}}
   </tbody>
+  <button class="btn"><a href="/api/productos" >Ir a productos</a></button>
 </table>

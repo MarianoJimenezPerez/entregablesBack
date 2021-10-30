@@ -15,4 +15,5 @@
     <div id="ayudaInputThumbnail" class="form-text">Ingrese la ruta del archivo media del producto</div>
   </div>
   <button type="submit" class="btn btn-primary" id="send-form">Enviar</button>
+  <button class="btn"><a href="/api/productos" >Ir a productos</a></button>
 </form>

@@ -35,20 +35,8 @@ router.get('/productos', (req, res) => {
     res.render('table', {listaProductos: productos})
 })
 
-router.get('/productos/:id', (req, res) => {
-    const id = parseInt(req.params.id)
 
-    if (isNaN(id)) {
-        return res.json( { error: 'El parámetro ingresado no es un número' } )
-    }
-    if ( id < 1 || id > productos.length) {
-        return res.json( { error: 'producto no encontrado'} )
-    }
-
-    res.json({ producto: productos[id - 1]})
-})
-
-router.get('/productos2', (req, res) => {
+router.post('/productos', (req, res) => {
     res.render('main', {})
     /*const tituloNuevo = document.getElementById('productTitle').value
     const precioNuevo = document.getElementById('productPrice').value
@@ -63,33 +51,6 @@ router.get('/productos2', (req, res) => {
         productos.push( productoNuevo )
         productos[productos.length - 1].id = productos.length
     })*/
-})
-
-
-router.put('/productos/:id', (req, res) => {
-    const id = parseInt(req.params.id)
-    let productoModificado = productos.find(producto => producto.id === id)
-    if (isNaN(id)) {
-        return res.json( { error: 'Ingrese un ID válido' } )
-    }
-    if ( id < 1 || id > productos.length) {
-        return res.json( { error: 'producto no encontrado'} )
-    }
-    productoModificado = req.body
-    res.json({ productoModificado})
-})
-
-router.delete('/productos/:id', (req, res) => {
-    const id = parseInt(req.params.id)
-    const productoAEliminar = productos.findIndex(producto => producto.id === id)
-    productos.splice(productoAEliminar, 1)
-    if (isNaN(id)) {
-        return res.json( { error: 'Ingrese un ID válido' } )
-    }
-    if ( id < 1 || id > productos.length) {
-        return res.json( { error: 'producto no encontrado'} )
-    }
-    res.json(productos)
 })
 
 app.use('/api', router)
