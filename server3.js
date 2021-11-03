@@ -39,7 +39,8 @@ router.get('/productos', (req, res) => {
 
 
 router.post('/productos', (req, res) => {
-    res.render('main', {})
+    console.log(req.body)
+    console.log(productos)
     /*const tituloNuevo = document.getElementById('productTitle').value
     const precioNuevo = document.getElementById('productPrice').value
     const thumbnailNuevo = document.getElementById('productThumbnail').value

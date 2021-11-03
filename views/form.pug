@@ -1,19 +1,32 @@
 extends index.pug
 
 block form
-    form(method="POST")
+    form(action='/api/productos', method='POST')
+
         div(class="mb-3")
+
             label(for="productTitle" class="form-label")='Título de producto'
-            input(type="text" class="form-control" id="productTitle" aria-describedby="ayudaInputTitle")
+
+            input#productTitle(type="text" class="form-control" name="title" aria-describedby="ayudaInputTitle")
+
             div(id="ayudaInputTitle" class="form-text")='Ingrese el título del producto a agregar'
+
         div(class="mb-3")
+
             label(for="productPrice" class="form-label")='Precio del producto'
-            input(type="number" class="form-control" id="productPrice" aria-describedby="ayudaInputPrice")
+
+            input#productPrice(type="number" class="form-control" name="price"  aria-describedby="ayudaInputPrice")
+
             div(id="ayudaInputPrice" class="form-text")='Ingrese el precio del producto a agregar'
+
         div(class="mb-3")
+
             label(for="productThumbnail" class="form-label")='Media del producto'
-            input(type="text" class="form-control" id="productThumbnail" aria-describedby="ayudaInputThumbnail")
+
+            input#productThumbnail(type="text" class="form-control" name="thumbnail"  aria-describedby="ayudaInputThumbnail")
+
             div(id="ayudaInputThumbnail" class="form-text")='Ingrese la ruta del archivo media del producto'
+
         button(type="submit" class="btn btn-primary" id="send-form")='Enviar'
-        button(class="btn")
+
         a(href="/api/productos")='Ir a productos'
