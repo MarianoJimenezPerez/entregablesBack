@@ -39,21 +39,9 @@ router.get('/productos', (req, res) => {
 
 
 router.post('/productos', (req, res) => {
-    console.log(req.body)
-    console.log(productos)
-    /*const tituloNuevo = document.getElementById('productTitle').value
-    const precioNuevo = document.getElementById('productPrice').value
-    const thumbnailNuevo = document.getElementById('productThumbnail').value
-    const sendForm = document.getElementById('send-form')
-    sendForm.addEventListener('click', () => {
-        const productoNuevo = {
-            title: tituloNuevo,
-            price: precioNuevo,
-            thumbnail: thumbnailNuevo
-        }
-        productos.push( productoNuevo )
-        productos[productos.length - 1].id = productos.length
-    })*/
+    let nuevoProducto = req.body
+    nuevoProducto.id = productos.length + 1
+    productos.push(nuevoProducto)
 })
 
 app.use('/api', router)

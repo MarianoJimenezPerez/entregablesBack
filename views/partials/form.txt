@@ -1,4 +1,4 @@
-<form method="POST">
+<form method="POST" action="/api/propductos">
   <div class="mb-3">
     <label for="productTitle" class="form-label">Título de producto</label>
     <input type="text" class="form-control" id="productTitle" aria-describedby="ayudaInputTitle" name="title">
