@@ -1,11 +1,11 @@
-<form method="POST" action="/api/propductos">
+<form method="POST" action="/api/productos">
   <div class="mb-3">
     <label for="productTitle" class="form-label">Título de producto</label>
     <input type="text" class="form-control" id="productTitle" aria-describedby="ayudaInputTitle" name="title">
     <div id="ayudaInputTitle" class="form-text">Ingrese el título del producto a agregar</div>
   </div>
   <div class="mb-3">
-    <label for="productPrice" class="form-label">Precio del producto</label>
+    <label for="productPrice" class="form-label">Precio dnpm sel producto</label>
     <input type="number" class="form-control" id="productPrice" aria-describedby="ayudaInputPrice" name="price">
     <div id="ayudaInputPrice" class="form-text">Ingrese el precio del producto a agregar</div>
   </div>

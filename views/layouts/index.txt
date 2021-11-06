@@ -17,7 +17,7 @@
         <form>
             <input type="text" name="nombre" placeholder="Nombre" required="true">
             <input type="email" id="mail-cliente" name="mail" placeholder="Email" required="true">
-            <input type="text" id="chat">
+            <input type="text" id="chat" placeholder="mensaje" required="true">
             <button id="boton-enviar" type="submit">Enviar</button>
         </form>   
         <p id="chat-history"></p>

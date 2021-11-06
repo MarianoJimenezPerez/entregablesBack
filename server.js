@@ -77,4 +77,4 @@ io.on('connection', (socket) => {
     })
 })
 app.set('view engine', 'txt')
-app.set('views', './views')
+app.set('views', __dirname +'./views')
