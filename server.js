@@ -1,14 +1,21 @@
 const express = require ('express')
 const {promises: fs} = require('fs')
 const { Router } = express
+const { Server: HttpServer} = require('http');
+const { Server: IOServer} = require('socket.io');
 const app = express()
 const router = Router()
+const httpServer = new HttpServer(app);
+const io = new IOServer(httpServer);
+
+let socketGuardado
+const mensajes = [];
 
 const handlebars = require('express-handlebars');   
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(express.static('public'))
+app.use(express.static('./public'))
 
 const productos = [
     {
@@ -60,5 +67,14 @@ app.engine(
         partialsDir: __dirname + "/views/partials/"
     })
 );
+io.on('connection', (socket) => {
+    console.log("conectado");
+    socket.emit('mensajes', mensajes)
+    socketGuardado = socket
+    socket.on('mensaje' , data => {
+        mensajes.push({socketId: socket.id, mensaje: data});
+        io.sockets.emit('mensajes', mensajes)
+    })
+})
 app.set('view engine', 'txt')
 app.set('views', './views')
